@@ -107,8 +107,11 @@
       }*/
       const showPortfolio = (done) => {
         const paintandquestPreviewButton = document.querySelector("#paintandquest-preview-button");
+        const iconPlayButton = document.querySelector("#icon-play-button");
+        
         paintandquestPreviewButton.addEventListener('click', () => {
           paintandquestPreviewButton.setAttribute("visible", false);
+          iconPlayButton.setAttribute("visible", false);
           const testVideo = document.createElement( "video" );
           const canplayWebm = testVideo.canPlayType( 'video/webm; codecs="vp8, vorbis"' );
           if (canplayWebm == "") {
@@ -121,7 +124,7 @@
         });
       }
 
-      const hidePortfolio = (done) => {
+      /*const hidePortfolio = (done) => {
           const testVideo = document.createElement( "video" );
           const canplayWebm = testVideo.canPlayType( 'video/webm; codecs="vp8, vorbis"' );
           if (canplayWebm == "") {
@@ -131,7 +134,7 @@
             document.querySelector("#paintandquest-video-link").setAttribute("src", "#paintandquest-video-webm");
             document.querySelector("#paintandquest-video-webm").play();
           }
-      }
+      }*/
 
       const showAvatar = (onDone) => {
         const avatar = document.querySelector("#avatar");
@@ -162,7 +165,7 @@
           });
           this.el.addEventListener('targetLost', event => {
             console.log("target lost");
-
+            iconPlayButton.setAttribute("visible", true);
             const testVideo = document.createElement( "video" );
             const canplayWebm = testVideo.canPlayType( 'video/webm; codecs="vp8, vorbis"' );
             if (canplayWebm == "") {
@@ -284,6 +287,7 @@
           <img id="paintandquest-preview" src="./assets/card-example/portfolio/paintandquest-preview.png" />
           <video id="paintandquest-video-mp4" autoplay="false" loop="false" src="./assets/card-example/portfolio/paintandquest.mp4"></video>
           <video id="paintandquest-video-webm" autoplay="false" loop="false" src="./assets/card-example/portfolio/paintandquest.webm"></video>
+          <img id="icon-play" src="./assets/card-example/icons/play.png" />
           
           <!--
           <img id="coffeemachine-preview" src="./assets/card-example/portfolio/coffeemachine-preview.png" />
@@ -301,6 +305,7 @@
             <!--<a-entity id="portfolio-item0">-->
               <a-video id="paintandquest-video-link" webkit-playsinline playsinline height="1.5" position="0 0 0"></a-video>
               <a-image id="paintandquest-preview-button" class="clickable" src="#paintandquest-preview" alpha-test="0.5" position="0 0 0" height="1.5"></a-image>
+              <a-image id="icon-play-button" src="#icon-play" alpha-test="0.5" position="0 0 0" height="1.5"></a-image>
             <!--</a-entity>-->
 
           <!--<a-entity visible=false id="portfolio-panel" position="0 0 -0.01">-->
