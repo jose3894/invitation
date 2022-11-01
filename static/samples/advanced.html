@@ -121,6 +121,18 @@
         });
       }
 
+      const hidePortfolio = (done) => {
+          const testVideo = document.createElement( "video" );
+          const canplayWebm = testVideo.canPlayType( 'video/webm; codecs="vp8, vorbis"' );
+          if (canplayWebm == "") {
+            document.querySelector("#paintandquest-video-link").setAttribute("src", "#paintandquest-video-mp4");
+            document.querySelector("#paintandquest-video-mp4").play();
+          } else {
+            document.querySelector("#paintandquest-video-link").setAttribute("src", "#paintandquest-video-webm");
+            document.querySelector("#paintandquest-video-webm").play();
+          }
+      }
+
       const showAvatar = (onDone) => {
         const avatar = document.querySelector("#avatar");
         let z = -0.3;
@@ -151,9 +163,15 @@
           this.el.addEventListener('targetLost', event => {
             console.log("target lost");
 
+            const testVideo = document.createElement( "video" );
+            const canplayWebm = testVideo.canPlayType( 'video/webm; codecs="vp8, vorbis"' );
             if (canplayWebm == "") {
+              console.log("target lost mp4");
+              document.querySelector("#paintandquest-video-link").setAttribute("src", "#paintandquest-video-mp4");
               document.querySelector("#paintandquest-video-mp4").pause();
             } else {
+              console.log("target lost web");
+              document.querySelector("#paintandquest-video-link").setAttribute("src", "#paintandquest-video-webm");
               document.querySelector("#paintandquest-video-webm").pause();
             }
 
