@@ -150,6 +150,13 @@
           });
           this.el.addEventListener('targetLost', event => {
             console.log("target found");
+
+            if (canplayWebm == "") {
+              document.querySelector("#paintandquest-video-mp4").pause();
+            } else {
+              document.querySelector("#paintandquest-video-webm").pause();
+            }
+
           });
           //this.el.emit('targetFound');
         }
