@@ -164,13 +164,13 @@
             });
           });
           this.el.addEventListener('targetLost', event => {
-            console.log("target lostt");
+            console.log("target lost 1");
             
             const testingVideo = document.createElement( "video" );
             const canplayWebmm = testingVideo.canPlayType( 'video/webm; codecs="vp8, vorbis"' );
-            //const iconPlayButtonn = document.querySelector("#icon-play-button");
+            const iconPlayButtonn = document.querySelector("#icon-play-button");
 
-            //iconPlayButtonn.setAttribute("visible", true);
+            iconPlayButtonn.setAttribute("visible", true);
             if (canplayWebmm == "") {
               console.log("target lost mp4");
               document.querySelector("#paintandquest-video-link").setAttribute("src", "#paintandquest-video-mp4");
