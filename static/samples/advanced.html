@@ -158,7 +158,7 @@
         init: function () {
           this.el.addEventListener('targetFound', event => {
             console.log("target found");
-            showAvatar(() => {
+            /*showAvatar(() => {
               setTimeout(() => {
                 showPortfolio(() => {
                   setTimeout(() => {
@@ -166,7 +166,9 @@
                   }, 300);
                 });
               }, 300);
-            });
+            });*/
+            showPortfolio();
+            showInfo();
           });
           this.el.addEventListener('targetLost', event => {
             console.log("target lost 2");
