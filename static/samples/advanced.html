@@ -149,6 +149,7 @@
         const avatar = document.querySelector("#avatar");
         const avatarRing = document.querySelector("#avatarRing");
         const avatarDate = document.querySelector("#avatarDate");
+        const avatarLocation = document.querySelector("#avatarLocation");
         
         let z = -0.3;
         const id = setInterval(() => {
@@ -160,6 +161,7 @@
           avatar.setAttribute("position", "0 -0.25 " + z);
           avatarRing.setAttribute("position", "0 -0.25 " + z);
           avatarDate.setAttribute("position", "0 -0.25 " + z);
+          avatarLocation.setAttribute("position", "0 -0.25 " + z);
           
         }, 10);
       }
@@ -317,6 +319,7 @@
           <a-asset-item id="avatarModel" src="./assets/card-example/portfolio/avatar/NombresBasicosBakeClaro.gltf"></a-asset-item>
           <a-asset-item id="avatarRingModel" src="./assets/card-example/portfolio/avatar/Anillos.gltf"></a-asset-item>
           <a-asset-item id="avatarDateModel" src="./assets/card-example/portfolio/avatar/fecha.glb"></a-asset-item>
+          <a-asset-item id="avatarLocationModel" src="./assets/card-example/portfolio/avatar/location.gltf"></a-asset-item>
           
         </a-assets>
 
@@ -332,6 +335,7 @@
               <a-gltf-model id="avatar" rotation="0 270 0" position="-1.25 0 0" scale="0.28 0.28 0.28" src="#avatarModel"></a-gltf-model>
               <a-gltf-model id="avatarRing" rotation="0 270 0" position="-1.25 0 0" scale="0.28 0.28 0.28" src="#avatarRingModel"></a-gltf-model>
               <a-gltf-model id="avatarDate" rotation="0 270 0" position="-1.25 -0.4 0" scale="0.28 0.28 0.28" src="#avatarDateModel"></a-gltf-model>
+              <a-gltf-model id="avatarLocation" rotation="0 270 0" position="0 -0.7 0" scale="0.28 0.28 0.28" src="#avatarLocationModel"></a-gltf-model>
             <!--</a-entity>-->
 
           <!--<a-entity visible=false id="portfolio-panel" position="0 0 -0.01">-->
