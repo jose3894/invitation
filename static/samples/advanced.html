@@ -147,6 +147,8 @@
 
       const showAvatar = (onDone) => {
         const avatar = document.querySelector("#avatar");
+        const avatarRing = document.querySelector("#avatarRingModel");
+        
         let z = -0.3;
         const id = setInterval(() => {
           z += 0.008;
@@ -155,6 +157,8 @@
             onDone();
           }
           avatar.setAttribute("position", "0 -0.25 " + z);
+          avatarRing.setAttribute("position", "0 -0.25 " + z);
+          
         }, 10);
       }
 
@@ -309,6 +313,7 @@
           <img id="peak-preview" src="./assets/card-example/portfolio/peak-preview.png" />
           -->
           <a-asset-item id="avatarModel" src="./assets/card-example/portfolio/avatar/NombresBasicosBakeClaro.gltf"></a-asset-item>
+          <a-asset-item id="avatarRingModel" src="./assets/card-example/portfolio/avatar/Anillos.gltf"></a-asset-item>
           
         </a-assets>
 
@@ -322,6 +327,7 @@
               <a-image id="paintandquest-preview-button" class="clickable" src="#paintandquest-preview" alpha-test="0" position="0 0 0" height="1"></a-image>
               <a-image id="icon-play-button" src="#icon-play" position="0 0 0" height="1" width="1"></a-image>
               <a-gltf-model id="avatar" rotation="0 270 0" position="-1.25 0 0" scale="0.28 0.28 0.28" src="#avatarModel"></a-gltf-model>
+              <a-gltf-model id="avatarRing" rotation="0 270 0" position="-1.25 0 0" scale="0.28 0.28 0.28" src="#avatarRingModel"></a-gltf-model>
             <!--</a-entity>-->
 
           <!--<a-entity visible=false id="portfolio-panel" position="0 0 -0.01">-->
