@@ -51,6 +51,7 @@
                 "baseColorTexture" : {
                     "index" : 0
                 },
+                "metallicFactor" : 0.9212121367454529,
                 "metallicRoughnessTexture" : {
                     "index" : 1
                 }
@@ -92,7 +93,7 @@
         {
             "bufferView" : 5,
             "mimeType" : "image/png",
-            "name" : "nombres_Mat1.001_Metallic-nombres_Mat1.001_Roughness"
+            "name" : "nombres_Mat1.001_Roughness"
         }
     ],
     "accessors" : [
