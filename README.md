@@ -1,2 +1,0 @@
-# invitation
-Wedding Invitation AR
