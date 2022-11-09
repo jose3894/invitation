@@ -63,7 +63,7 @@
       AFRAME.registerComponent('mytarget', {
         init: function () {
           this.el.addEventListener('targetFound', event => {
-            console.log("target found2");
+            console.log("target found");
             /*showAvatar(() => {
               setTimeout(() => {
                 showPortfolio(() => {
@@ -77,7 +77,7 @@
             showInfo();
           });
           this.el.addEventListener('targetLost', event => {
-            console.log("target lost2");
+            console.log("target lost");
             
             const iconPlayButtonn = document.querySelector("#icon-play-button");
 
@@ -267,7 +267,7 @@
       </div>
     </div>
 
-    <div class="example-container"  id="main">
+    <!--<div class="example-container"  id="main">
       <div id="example-scanning-overlay" class="hidden">
         <div class="inner">
           <img src="./assets/target/invitation.png"/>
@@ -303,6 +303,6 @@
           ></a-gltf-model> 
         </a-entity>
       </a-scene>
-    </div>
+    </div>-->
   </body>
 </html>
