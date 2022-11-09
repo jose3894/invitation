@@ -63,7 +63,7 @@
       AFRAME.registerComponent('mytarget', {
         init: function () {
           this.el.addEventListener('targetFound', event => {
-            console.log("target found");
+            console.log("target found22");
             /*showAvatar(() => {
               setTimeout(() => {
                 showPortfolio(() => {
@@ -267,13 +267,13 @@
       </div>
     </div>
 
-    <!--<div class="example-container"  id="main">
+    <div class="example-container"  id="main" visible="false">
       <div id="example-scanning-overlay" class="hidden">
         <div class="inner">
           <img src="./assets/target/invitation.png"/>
           <div class="scanline"></div>
         </div>
-      </div>-->
+      </div>
 
       <a-scene mindar-image="imageTargetSrc: ./assets/target/test.mind; showStats: false; uiScanning: #example-scanning-overlay;" embedded color-space="sRGB" renderer="colorManagement: true, physicallyCorrectLights" vr-mode-ui="enabled: false" device-orientation-permission-ui="enabled: false" visible=false>
         <a-assets>
