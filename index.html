@@ -98,10 +98,10 @@
 
       //Validar contraseña
       function validarContraseña() {
-        var pass = __('pass').value,
-            pass2 = __('pass2').value;
-        if(pass != '' && pass2 != ''){
-          if(pass != pass2){
+        var checkPass = "hola";
+        var pass = __('pass').value;
+        if(pass != ''){
+          if(pass != checkPass){
             //si las contraseñas no coinciden
             __('resultado').innerHTML = '<p class="error"><strong>Error: </strong>¡Las contraseñas no coinciden!</p>';
           } else {
@@ -265,7 +265,6 @@
     <div id="form" onkeypress="enterEnviar(event);">
       <div id="resultado"></div>  
       <input type="password" placeholder="Contraseña" id="pass">
-      <input type="password" placeholder="Repetir contraseña" id="pass2">
       <input type="submit" onclick="validarContraseña()" class="btn-submit" value="Verificar">
       <div class="info">
         <p>Pulse ENTER para verificar.</p>
