@@ -107,7 +107,9 @@
           } else {
             //Si todo esta correcto 
             __('form').innerHTML = '<p class="correcto"><strong>✓ Correcto: </strong>Los datos son correctos :)</p>';
-            document.getElementById('main').style.display = 'block';
+            document.getElementById('form').style.display = 'none';
+            document.getElementById('main').style.display = 'flex';
+            
           }
         } else {
           //si los campos o uno, este vacio
