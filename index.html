@@ -100,13 +100,13 @@
       function validarContraseña() {
         var checkPass = "chupi";
         var pass = __('pass').value;
+        console.log("test4");
         if(pass != ''){
           if(pass != checkPass){
             //si las contraseñas no coinciden
             __('resultado').innerHTML = '<p class="error"><strong>Error: </strong>¡Las contraseñas no coinciden!</p>';
           } else {
             //Si todo esta correcto 
-            console.log("test3");
             __('form').innerHTML = '<p class="correcto"><strong>✓ Correcto: </strong>Los datos son correctos :)</p>';
             document.getElementById('form').style.display = 'none';
             document.getElementById('main').style.display = 'flex';
@@ -280,7 +280,7 @@
         </div>
       </div>
 
-      <a-scene mindar-image="imageTargetSrc: ./assets/target/invitation.mind; showStats: false; uiScanning: #example-scanning-overlay; filterMinCF: 10; filterBeta: 10000; warmupTolerance: 1; missTolerance: 20" embedded color-space="sRGB" renderer="colorManagement: true, physicallyCorrectLights" vr-mode-ui="enabled: false" device-orientation-permission-ui="enabled: false">
+      <a-scene mindar-image="imageTargetSrc: ./assets/target/invitation.mind; showStats: false; uiScanning: #example-scanning-overlay; filterMinCF: 10; filterBeta: 10; warmupTolerance: 1; missTolerance: 20" embedded color-space="sRGB" renderer="colorManagement: true, physicallyCorrectLights" vr-mode-ui="enabled: false" device-orientation-permission-ui="enabled: false">
         <a-assets>
           <img id="card" src="./assets/target/invitation.png" />
           <img id="paintandquest-preview" src="./assets/target/invitation.png" />
