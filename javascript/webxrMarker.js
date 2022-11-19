@@ -6,7 +6,7 @@ let play = false
 
 //load model....
 let fbxObject = undefined
-var loader = new THREE.GLTFLoader();
+var loader = new THREE.FBXLoader();
 let mixer, animationAction,group
 loader.load( '../assets/objects/nombresBakesSINY.gltf', function ( object ) {
     object.scale.x = 0.004;
