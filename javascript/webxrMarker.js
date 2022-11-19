@@ -2,9 +2,41 @@ const img  = document.getElementById('bitmap');
 // Ensure the image is loaded and ready for use
 var imgBitmap = null
 createImageBitmap(img).then(x=>{imgBitmap = x});
+let play = false
 
-//   each frame send to socket.
+//load model....
+let fbxObject = undefined
+var loader = new THREE.GLTFLoader();
+let mixer, animationAction,group
+loader.load( '../assets/objects/nombresBakesSINY.gltf', function ( object ) {
+    object.scale.x = 0.004;
+    object.scale.y = 0.004;
+    object.scale.z = 0.004;
+    object.rotation.y = Math.PI
+    fbxObject =object
+        group = new THREE.Group()
+        group.add(fbxObject)
 
+        mixer = new THREE.AnimationMixer(fbxObject)
+
+       
+		fbxObject.position.z = -3;
+        
+		scene.add( group );
+        /*loader.load( '../static/fbx/animation.fbx', function ( object ) {
+    
+		// object.scale.x = 0.001;
+		// object.scale.y = 0.001;
+		// object.scale.z = 0.001;
+            animationAction = mixer.clipAction(
+                object.animations[0]
+            )
+            // fbxObject.position.copy( fbxObject.children[0].position.clone().multiplyScalar(-1))
+            animationAction.play()
+            // fbxObject.position.z = -3;=
+            } );*/
+	} );
+	
 let clock = new THREE.Clock()
 
 // standard webxr scene
@@ -16,17 +48,6 @@ function xwwwform(jsonObject){
 let camera, scene, renderer, xrRefSpace, gl;
 
 scene = new THREE.Scene();
-
-const geometry = new THREE.BoxGeometry( 0.2, 0.2, 0.2 );
-const material = new THREE.MeshStandardMaterial( {color: 0x00ff00} );
-desktopCube = new THREE.Mesh( geometry, material );
-scene.add( desktopCube );
-desktopCube.position.z -= 0.5
-
-const geometry1 = new THREE.BoxGeometry( 0.1, 0.1, 0.1 );
-const material1 = new THREE.MeshStandardMaterial( {color: 0xcc6600} );
-earthCube = new THREE.Mesh( geometry1, material1 );
-scene.add( earthCube );
 
 
 var ambient = new THREE.AmbientLight( 0x222222 );
@@ -105,7 +126,7 @@ function AR(){
             trackedImages: [
               {
                 image: imgBitmap,
-                widthInMeters: 0.2
+                widthInMeters: 0.05
               }
             ],
             domOverlay: { root: document.body }
@@ -153,9 +174,11 @@ function onXRFrame(t, frame) {
 			  const pose1 = frame.getPose(result.imageSpace, xrRefSpace);
 			  pos = pose1.transform.position
 			  quat = pose1.transform.orientation
+              console.log('found')
 
-			  earthCube.position.copy( pos.toJSON())
-			  earthCube.quaternion.copy(quat.toJSON())
+			  group.position.copy( pos.toJSON())
+            //   this needs to be a projection downwards
+			  group.quaternion.copy(quat.toJSON())
 			  const state = result.trackingState;
 			
 			  if (state == "tracked") {
@@ -178,6 +201,8 @@ function onWindowResize() {
 }
 render()
 function render() {
+	var delta = clock.getDelta();
+	if ( mixer ) mixer.update( delta );
 	renderer.render( scene, camera );
 }
 
