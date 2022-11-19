@@ -1,1 +1,0 @@
-create using stable diffusion
