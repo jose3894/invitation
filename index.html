@@ -1,313 +1,74 @@
-<html>
-  <head>
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <script src="https://cdn.jsdelivr.net/npm/mind-ar@1.1.5/dist/mindar-image.prod.js"></script>
-    <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/mind-ar@1.1.5/dist/mindar-image-aframe.prod.js"></script>
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<title>AR</title>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+		<style type="text/css">
+			body .dg li.title,
+			body .dg li:not(.folder),
+			body .dg.main .close-button {
+				background-color: rgba(0, 0, 0, 0.5);
+			}
 
-    <script>
-      const showInfo = () => {
-        let y = 0;
-        const profileButton = document.querySelector("#profile-button");
-        const webButton = document.querySelector("#web-button");
-        const emailButton = document.querySelector("#email-button");
-        const locationButton = document.querySelector("#location-button");
-        const text = document.querySelector("#text");
-
-        webButton.setAttribute("visible", true);
-
-        let currentTab = '';
-        webButton.addEventListener('click', function (evt) {
-          window.location.href="https://www.google.com/maps/search/hotel+comendador/@40.17533,-3.8923627,254m/data=!3m1!1e3";
-        });
-        
-      }
-      
-      const showPortfolio = (done) => {
-        const paintandquestPreviewButton = document.querySelector("#paintandquest-preview-button");
-        const iconPlayButton = document.querySelector("#icon-play-button");
-        
-        paintandquestPreviewButton.addEventListener('click', () => {
-          paintandquestPreviewButton.setAttribute("visible", false);
-          iconPlayButton.setAttribute("visible", false);
-          document.querySelector("#paintandquest-video-link").setAttribute("src", "#paintandquest-video-mp4");
-          document.querySelector("#paintandquest-video-mp4").play();
-        });
-
-        setTimeout(() => {
-              done();
-            }, 500);
-
-      }
-
-      const showAvatar = (onDone) => {
-        const avatar = document.querySelector("#avatar");
-        const avatarRing = document.querySelector("#avatarRing");
-        const avatarDate = document.querySelector("#avatarDate");
-        
-        let z = -0.3;
-        const id = setInterval(() => {
-          z += 0.008;
-          if (z >= 0.3) {
-            clearInterval(id);
-            onDone();
-          }
-          avatar.setAttribute("position", "0 -0.25 " + z);
-          avatarRing.setAttribute("position", "0 -0.25 " + z);
-          avatarDate.setAttribute("position", "0 -0.25 " + z);
-          
-        }, 10);
-      }
-
-      AFRAME.registerComponent('mytarget', {
-        init: function () {
-          this.el.addEventListener('targetFound', event => {
-            console.log("target found");
-            /*showAvatar(() => {
-              setTimeout(() => {
-                showPortfolio(() => {
-                  setTimeout(() => {
-                    showInfo();
-                  }, 300);
-                });
-              }, 300);
-            });*/
-            showPortfolio();
-            showInfo();
-          });
-          this.el.addEventListener('targetLost', event => {
-            console.log("target lost");
-            
-            const iconPlayButtonn = document.querySelector("#icon-play-button");
-
-            iconPlayButtonn.setAttribute("visible", true);
-            console.log("target lost mp4");
-            document.querySelector("#paintandquest-video-link").setAttribute("src", "#paintandquest-video-mp4");
-            document.querySelector("#paintandquest-video-mp4").pause();
-
-          });
-        }
-      });
-
-
-      //función para ahorrar codigo [document.getElementById() = __()];
-      function __(id){
-        return document.getElementById(id);
-      }
-
-      //Validar contraseña
-      function validarContraseña() {
-        var checkPass = "chupi";
-        var pass = __('pass').value;
-        console.log("test13");
-        if(pass != ''){
-          if(pass != checkPass){
-            //si las contraseñas no coinciden
-            __('resultado').innerHTML = '<p class="error"><strong>Error: </strong>¡Las contraseñas no coinciden!</p>';
-          } else {
-            //Si todo esta correcto 
-            __('form').innerHTML = '<p class="correcto"><strong>✓ Correcto: </strong>Los datos son correctos :)</p>';
-            document.getElementById('form').style.display = 'none';
-            document.getElementById('main').style.display = 'flex';
-            
-          }
-        } else {
-          //si los campos o uno, este vacio
-          __('resultado').innerHTML = '<p class="error"><strong>Error: </strong>¡Los campos no deben estar vacios!</p>';
-        } 
-      }
-
-      //enviar formulario con la tecla ENTER
-      function enterEnviar(event){
-          if(event.keyCode == 13){
-            validarContraseña()
-          }
-      }
-    </script>
-
-    <style>
-      body {
-        margin: 0;
-      }
-
-      #main{
-        display: none;
-      }
-
-      .example-container {
-        overflow: hidden;
-        position: absolute;
-        width: 100%;
-        height: 100%;
-      }
-     
-      #example-scanning-overlay {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        position: absolute;
-        left: 0;
-        right: 0;
-        top: 0;
-        bottom: 0;
-        background: transparent;
-        z-index: 2;
-      }
-      @media (min-aspect-ratio: 1/1) {
-        #example-scanning-overlay .inner {
-          width: 50vh;
-          height: 50vh;
-        }
-      }
-      @media (max-aspect-ratio: 1/1) {
-        #example-scanning-overlay .inner {
-          width: 80vw;
-          height: 80vw;
-        }
-      }
-
-      #example-scanning-overlay .inner {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        position: relative;
-
-        background:
-          linear-gradient(to right, white 10px, transparent 10px) 0 0,
-          linear-gradient(to right, white 10px, transparent 10px) 0 100%,
-          linear-gradient(to left, white 10px, transparent 10px) 100% 0,
-          linear-gradient(to left, white 10px, transparent 10px) 100% 100%,
-          linear-gradient(to bottom, white 10px, transparent 10px) 0 0,
-          linear-gradient(to bottom, white 10px, transparent 10px) 100% 0,
-          linear-gradient(to top, white 10px, transparent 10px) 0 100%,
-          linear-gradient(to top, white 10px, transparent 10px) 100% 100%;
-        background-repeat: no-repeat;
-        background-size: 40px 40px;
-      }
-
-      #example-scanning-overlay.hidden {
-        display: none;
-      }
-
-      #example-scanning-overlay img {
-        opacity: 0.6;
-        width: 90%;
-        align-self: center;
-      }
-
-      #example-scanning-overlay .inner .scanline {
-        position: absolute;
-        width: 100%;
-        height: 10px;
-        background: white;
-        animation: move 2s linear infinite;
-      }
-      @keyframes move {
-        0%, 100% { top: 0% }
-        50% { top: calc(100% - 10px) }
-      }
-
-      * {
-        padding: 0;
-        margin: 0;
-        -webkit-box-sizing: border-box;
-        -moz-box-sizing: border-box;
-        box-sizing: border-box;
-        font-family: sans-serif;
-      }
-
-      #form {
-        width: 450px;
-        margin: auto;
-        margin-top: 20px;
-      }
-      @media (max-width: 450px) {
-        #form {
-          width: 100%;
-        }
-      }
-      #form input {
-        width: 100%;
-        padding: 10px;
-        margin: 5px 0;
-        outline: none;
-        font-size: 16px;
-        border: 1px solid #ccc;
-        border-radius: 4px;
-      }
-      #form .btn-submit {
-        border: none;
-        padding: 14px;
-        font-weight: 800;
-      }
-
-      .error {
-        background: #FF4C4C;
-        padding: 10px;
-        border-radius: 7px;
-      }
-
-      .correcto {
-        background: #81C081;
-        padding: 10px;
-        border-radius: 7px;
-      }
-
-      .info p {
-        color: #ccc;
-        font-size: 12px;
-        text-align: right;
-      }
-    </style>
-  </head>
-
-  <body>
-    <div id="form" onkeypress="enterEnviar(event);">
-      <div id="resultado"></div>  
-      <input type="password" placeholder="Contraseña" id="pass">
-      <input type="submit" onclick="validarContraseña()" class="btn-submit" value="Verificar">
-      <div class="info">
-        <p>Pulse ENTER para verificar.</p>
-      </div>
-    </div>
-
-    <div class="example-container" id="main">
-      <div id="example-scanning-overlay" class="hidden">
-        <div class="inner">
-          <img src="./assets/target/scanme.png"/>
-          <div class="scanline"></div>
-        </div>
-      </div>
-
-      <a-scene mindar-image="imageTargetSrc: ./assets/target/invitation.mind; showStats: false; uiScanning: #example-scanning-overlay; filterMinCF: 10; filterBeta: 1000; warmupTolerance: 1; missTolerance: 20" embedded color-space="sRGB" renderer="colorManagement: true, physicallyCorrectLights" vr-mode-ui="enabled: false" device-orientation-permission-ui="enabled: false">
-        <a-assets>
-          <img id="card" src="./assets/target/invitation.png" />
-          <img id="paintandquest-preview" src="./assets/target/invitation.png" />
-          <video id="paintandquest-video-mp4" autoplay="false" loop="false" src="./assets/video/wedding.mp4"></video>
-          <a-asset-item id="avatarModel" src="./assets/objects/nombresBakesSINY.gltf"></a-asset-item>
-          <a-asset-item id="avatarRingModel" src="./assets/objects/ringsNewBake.gltf"></a-asset-item>
-          <a-asset-item id="avatarDateModel" src="./assets/objects/dateBake.gltf"></a-asset-item>
-          <a-asset-item id="avatarLocationModel" src="./assets/objects/locationGold.gltf"></a-asset-item>
-          <a-asset-item id="icon-play" src="./assets/objects/Play.gltf"></a-asset-item>
-          
-        </a-assets>
-
-        <a-camera position="0 0 0" look-controls="enabled: false" cursor="fuse: false; rayOrigin: mouse;" raycaster="far: 10000; objects: .clickable">
-        </a-camera>
-
-        <a-entity id="mytarget" mytarget mindar-image-target="targetIndex: 0">
-          <a-video id="paintandquest-video-link" webkit-playsinline playsinline height="1" position="0 0 0"></a-video>
-          <a-image id="paintandquest-preview-button" class="clickable" src="#paintandquest-preview" alpha-test="0" position="0 0 0" height="1"></a-image>
-          <a-gltf-model id="avatar" rotation="0 270 0" position="-0.16 0.99 0" scale="0.28 0.28 0.28" src="#avatarModel"></a-gltf-model>
-          <a-gltf-model id="avatarRing" rotation="0 270 0" position="-0.1 0.99 0.1" scale="0.28 0.28 0.28" src="#avatarRingModel"></a-gltf-model>
-          <a-gltf-model id="avatarDate" rotation="0 270 0" position="-0.1 0.55 0" scale="0.12 0.12 0.12" src="#avatarDateModel"></a-gltf-model>
-          <a-gltf-model id="icon-play-button" rotation="180 270 0" position="0 0 0" scale="0.5 0.5 0.5" src="#icon-play"></a-gltf-model>
-          <a-gltf-model visible=false id="web-button" class="clickable" rotation="0 270 0" position="0 -0.9 0" scale="0.28 0.28 0.28" src="#avatarLocationModel"
-            animation="property: scale; to: 0.4 0.4 0.4; dur: 1000; easing: easeInOutQuad; loop: true; dir: alternate"
-          ></a-gltf-model> 
-        </a-entity>
-      </a-scene>
-    </div>
-  </body>
+			body {
+				background: rgba(240,255,255,1);
+			}
+			
+			li {
+				background: rgba(240,255,255,1);
+			}
+			
+			a {
+				color: rgba(0,25,55,1);
+			}
+		</style>
+	</head>	
+	<body>
+		
+<h3>Live Examples</h3>
+<h4>Physics</h4>
+<ul>
+<li><a href="html/arMagneticField.html">Magnetic Fields</a></li>
+<li><a href="html/magDipole.html">Magnetic Dipole</a></li>
+<li><a href="html/arManyBody.html">N-body visualization</a></li>
+<li><a href="html/hydrogenAtom.html">Hydrogen Orbitals</a></li>
+<li><a href="html/dopplerEffect.html">Relativistic Doppler</a></li>
+<li><a href="html/arQuantumHarmonic.html">Quantum Harmonic Oscillator</a></li>
+</ul>
+<h4>Core Api</h4>
+<ul>
+<li><a href="html/ArSkeleton.html"> Skeleton</a></li>
+<li><a href="html/arRuler.html"> Augmented Reality Ruler</a></li>
+<li><a href="html/cameraAccess.html">camera access</a></li>
+<li><a href="html/depthOcclusion.html"> Threejs occlusion example</a></li>
+<li><a href="html/depthCapture.html"> Capturing  depth images to file</a></li>
+<li><a href="html/depthMesh.html"> Creating a planar mesh with the depth api</a></li>
+<li><a href="html/lightEstimation.html">Light Estimation</a></li>
+<li><a href="html/arRecord.html">Record Motions to txt file</a></li>
+<li><a href="html/animation.html">Animation with Handdrawn Character</a></li>
+<li><a href="html/audioTour.html">Audio Tour</a></li>
+<li><a href="html/arPlaneDetection.html">Plane Detection</a></li>
+</ul>
+<h4>Simple Projects</h4>
+<ul>
+<li><a href="html/arCharts.html"> Charts</a></li>
+<li><a href="html/arDrawing.html"> Drawing</a></li>
+<li><a href="html/arFabric.html"> Image Manipulation</a></li>
+<li><a href="html/arChartGeo.html"> Earth</a></li>
+<li><a href="html/arIFrame.html"> arIFrame</a></li>
+</ul>
+<h4>Fun Projects</h4>
+<ul>
+<li><a href="html/kaleidoscope.html"> kaleidoscope</a></li>
+</ul>
+<h4>Larger Projects</h4>
+<ul>
+<li><a href="html/depthPhysics.html"> ammo.js physics engine + depth api</a></li>
+<li><a href="html/predictDipole.html"> an attempt at metal detection</a></li>
+<li><a href="html/arRegina.html"> gis example</a></li>
+<li><a href="html/arGrainElevator.html">Photogrammetry</a></li>
+</ul>
+		<p> These only work on mobile.</p>
+	</body>
 </html>
