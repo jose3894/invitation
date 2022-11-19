@@ -8,7 +8,7 @@ let play = false
 let fbxObject = undefined
 var loader = new THREE.FBXLoader();
 let mixer, animationAction,group
-loader.load( '../assets/objects/nombresBakesSINY.gltf', function ( object ) {
+loader.load( '../assets/objects/rp_nathan_animated_003_walking.gltf', function ( object ) {
     object.scale.x = 0.004;
     object.scale.y = 0.004;
     object.scale.z = 0.004;
